@@ -384,14 +384,120 @@ free(p)函数，释放指针p所指变量的存储空间，即彻底删除一个
 
 3. 链表是顺序存取的，顺序表是随机存取的
 
+### 2.5.1 单链表的定义和表示
 
+> 带头结点的单链表
 
+单链表是由**表头**唯一确定，因此单链表可以用头指针的名字来命名若头指针名是L，则把链表称为表L
 
+```C++
+  typedef struct Lnode{ // 声明结点的类型和指向结点的指针类型
+    ElemTyoe data;  // 结点的数据域
+    Lnode *next;    // 结点的指针域
+  } Lnode, *LinkList; // LinkList为指向结构体Lnode的指针类型
+```
 
+定义链表L：LinkList L;
 
+定义结点指针p：LNode *p;
 
+### 2.5.3 单链表基本操作的实现
 
+> 算法2.6——单链表的初始化(带头结点的单链表)
 
+单链表的初始化即构造一个空表。
+
+算法步骤：
+
+  1. 生成新结点作为头结点，用头指针L指向头结点
+
+  2. 将头结点的指针域置空
+
+算法描述：
+
+```C++
+  Status InitList_L(LinkList &L){
+    L = new LNode;
+    L->next = NULL;
+    return OK;
+  }
+```
+
+> 补充算法1：判断链表是否为空
+
+空表：链表中无元素，称为空链表(头指针和头结点仍然在)
+
+算法描述：
+
+```C++
+  int ListEmpty(LinkList L){ // 若L为空表，则返回1，否则返回0
+    if(L->next)
+      return 1;
+    else
+      return 0;
+  }
+```
+
+> 补充算法2：单链表的销毁：链表销毁后不存在
+
+算法思路：从头指针开始，依次释放所有结点
+
+算法描述：
+
+```C++
+  Status DestoryList_L(LinkList &L){// 销毁单链表L
+    Lnode *p;
+    while(L){ // 直至L为空
+      p = L;
+      L = L->next;
+      delete p;
+    }
+    return OK;
+  }
+```
+
+> 补充算法3：清空链表
+
+链表仍存在，但链表中无元素，成为空链表(头指针和头结点仍然在)
+
+算法思路：依次释放所有结点，并将头结点指针域设置为空
+
+算法描述：
+
+```C++
+  status ClearList(LinkList &L){  // 将L重置为空表
+    Lnode *p, *ql
+    p = L->next;
+    while(p){
+      q = p->next;
+      delete p;
+      p = q;
+    }
+    L->next = NULL; // 头结点指针域为空
+    return OK;
+  }
+```
+
+> 补充算法3：求单链表的表长
+
+算法思路：从首元结点开始，依次计数所有结点
+
+算法描述：
+
+```C++
+  int ListLength_L(LinkList L){ // 返回L中数据元素个数
+    LinkList p;
+    p = L->next;
+    int i = 0;
+    while(p){ // 遍历单链表，统计结点数
+      i++;
+      p = p->next;
+    }
+    return i;
+  }
+```
+
+> 算法2.7——取址(取单链表中第i个元素的内容)
 
 
 ## 2.6 顺序表和链式表的比较
