@@ -765,7 +765,63 @@ free(p)函数，释放指针p所指变量的存储空间，即彻底删除一个
 
 ### 2.5.5 双向链表
 
+双向链表：在单链表的每个结点里再增加一个指向其直接前驱的指针域prior，这样链表中就形成了有两个方向不同的链，故称为双向链表。
+
+双向链表结构定义：
+
+```C++
+  typedef struct DuLNode{
+    Elemtype data;
+    struct DuLNode *prior, *next;
+  }DuLNode, *DuLinkList;
+```
+
+双向循环链表:
+
+和单链的循环表类似，双向链表也可以有循环表
+
+- 让头结点的前驱指针指向链表的最后一个结点
+
+- 让最后一个结点的后继指针指向头结点。
+
+在双向链表中有些操作（如：ListLength、GetElem等），因仅涉及一个方向的指针，故它们的算法与线性链表的相同。但在插入、删除时，则需同时修改两个方向上的指针，两者的操作的时间复杂度均为O(n)。
+
+> 算法2.13 双向链表的插入
+
+```C++
+  void ListInsert_DuL(DuLinkList &L, int i, ElemType e){
+    // 在带头结点的双向循环链表L中第i个位置之前插入元素e
+    if(!(p = GetElemP_DuL(L, i))) return ERROR;
+    s = new DuLNode;
+    s->data = e;
+    s->prior = p->prior;
+    p->prior->next = s;
+    s->next = p;
+    p->prior = s;
+    return OK;
+  }
+```
+
+> 算法2.14 双向链表的删除
+
+```C++
+  void ListDelete_DuL(DuLinkList& L, int i, ElemType &e){
+    // 删除带头结点的双向循环链表L的第i个元素，并用e返回。
+    if(!(p = GetElemP_DuL(L, i))) return ERROR;
+    e = p->data;
+    p->prior->next = p->next;
+    p->next->prior = p->prior;
+    delete p;
+    return OK;
+  }
+```
+
 ## 2.6 顺序表和链式表的比较
+
+> 单链表、循环链表和双向链表的时间效率比较
+
+[]()
+
 
 ## 2.7 线性表的应用
 
