@@ -820,8 +820,7 @@ free(p)函数，释放指针p所指变量的存储空间，即彻底删除一个
 
 > 单链表、循环链表和双向链表的时间效率比较
 
-[]()
-
+![单链表、循环链表和双向链表的时间效率比较](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter2%20LinearList/%E5%8D%95%E9%93%BE%E8%A1%A8%E3%80%81%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%E5%92%8C%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%E7%9A%84%E6%97%B6%E9%97%B4%E6%95%88%E7%8E%87%E6%AF%94%E8%BE%83.png "单链表、循环链表和双向链表的时间效率比较")
 
 ## 2.7 线性表的应用
 
