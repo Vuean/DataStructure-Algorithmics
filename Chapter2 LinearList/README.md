@@ -816,12 +816,144 @@ free(p)函数，释放指针p所指变量的存储空间，即彻底删除一个
   }
 ```
 
-## 2.6 顺序表和链式表的比较
-
 > 单链表、循环链表和双向链表的时间效率比较
 
 ![单链表、循环链表和双向链表的时间效率比较](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter2%20LinearList/%E5%8D%95%E9%93%BE%E8%A1%A8%E3%80%81%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%E5%92%8C%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%E7%9A%84%E6%97%B6%E9%97%B4%E6%95%88%E7%8E%87%E6%AF%94%E8%BE%83.png "单链表、循环链表和双向链表的时间效率比较")
 
+## 2.6 顺序表和链式表的比较
+
+> 链式存储结构的优点：
+
+- 结点空间可以动态申请和释放；
+
+- 数据元素的逻辑次序靠结点的指针来指示，插入和删除时不需要移动数据元素。
+
+> 链式存储结构的缺点
+
+- 存储密度小：每个结点的指针域需额外占用存储空间。当每个结点的数据域所占字节不多时，指针域所占存储空间的比重显得很大。
+
+- 链式存储结构是非随机存取结构。对任一结点的操作都需要从头指针依指针链查找到该结点，这增加了算法的复杂度。
+
+> 顺序表和链式表的比较
+
+![]( "顺序表和链式表的比较")
+
 ## 2.7 线性表的应用
+
+主要介绍线性表的合并和有序表的合并。
+
+> 线性表的合并
+
+- 问题描述：
+
+  假设利用两个线性表La和Lb分别表示两个集合A和B，现要求合一个新的集合A = A∪B
+
+- 算法步骤：
+
+  依次取出Lb中的每个元素，执行以下操作：
+
+    1. 在La中查找该元素
+
+    2. 如果找不到，则将其插入La的最后
+
+- 算法描述：
+
+```C++
+  void union(List &La, List Lb){
+    La_len = ListLength(La);
+    Lb_len = ListLength(Lb);
+    for(int i = 1; i < Lb_len; i++){
+      GetElem(Lb, i, e);
+      if(!LocateElem(La, e)){
+        ListInsert(&La, ++La_len, e);
+      }
+    }
+  }
+```
+
+上述算法时间复杂度为O(La_len*Lb_len)。
+
+> 有序表的合并
+
+- 问题描述：
+
+  已知线性表La和Lb的数据元素按值非递减有序排列，现要求将La和Lb归并为一个新的线性表Lc，且Lc中的数据元素仍按值非递减有序排列。
+
+- 算法步骤：
+
+  1. 创建一个空表Lc
+
+  2. 依次从La或Lb中“摘取”元素值较小的结点插入到Lc表的最后，直至其中一个表变空为止
+
+  3. 继续将La或Lb其中一个表的剩余结点插入在Lc表的最后
+
+> 算法2.16 有序表合并——用顺序表实现
+
+- 用顺序表实现
+
+```C++
+  void MergeList_sq(SqList LA, SqList LB, SqList& LC){
+    // 指针pa和pb的初值分别指向两个表的第一个元素
+    pa = LA.elem;
+    pb = LB.elem;
+
+    // 新表长度为待合并两表的长度和
+    LC.length = LA.length + LB.length;
+    // 为新表分配空间
+    LC.elem = new ElemType[LC.length];
+    pc = LC.elem;
+
+    // 找到LA和LB的最后一个元素
+    pa_last = LA.elem + LA.length - 1;
+    pb_last = LB.elem + LB.length - 1;
+
+    // 两个表都非空
+    while(pa <= pa_last && pb <= pb_last){
+      if(*pa <= *pb){
+        *pc++ = *pa++;
+      }else{
+        *pc++ = *pb++;
+      }
+    }
+
+    // LB已到达表尾，将LA中剩余元素加入LC
+    while(pa <= pa_last) *pc++ = *pa++;
+
+    // LA已到达表尾，将LB中剩余元素加入LC
+    while(pb <= pb_last) *pc++ = *pb++;
+  }
+```
+
+时间复杂度为：O(ListLength(LA)+ListLength(LB))
+
+空间复杂度为：O(ListLength(LA)+ListLength(LB))
+
+> 算法2.17 有序表合并——用链表实现
+
+```C++
+  void MergeList_L(LinkList &La, LinkList &Lb, LinkList &Lc){
+    pa = La->next;
+    pb = Lb->next;
+    // pc指针指向头结点
+    pc = Lc = La; // 用La的头结点作为Lc的头结点
+    while(pa && pb){
+      if(pa->data <= pb->data){
+        pc->next = pa;
+        pc = pa;
+        pa = pa->next;
+      }else{
+        pc->next = pb;
+        pc = pb;
+        pb = pb->next;
+      }
+    }
+    pc->next = pa ? pa : pb;  // 插入剩余段
+    delete Lb;  // 删除Lb的头结点
+  }
+```
+
+时间复杂度为：O(ListLength(La)+ListLength(Lb))
+
+空间复杂度为：O(1)
 
 ## 2.8 案例分析与实现
