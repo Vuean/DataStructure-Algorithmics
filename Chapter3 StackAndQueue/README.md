@@ -387,3 +387,219 @@
 
 ## 3.5 队列的表示和操作的实现
 
+- 队列描述
+
+  - **队列**(**Queue**)是仅在表尾进行插入操作，在表头进行删除操作的线性表。
+
+  - 表尾即an端，称为队尾；表头即a1端，称为队头；
+
+  - 它是一种先进先出(FIFO)的线性表
+
+### 3.5.1 队列的抽象数据类型定义
+
+### 3.5.2 队列的顺序表示和实现
+
+队列的物理存储可以用顺序存储结构，也可用链式存储结构。相应地队列的存储方式也分为两种，即**顺序队列**和**链式队列**。
+
+队列的顺序表示——用一维数组`base[MAXQSIZE]`
+
+```C++
+    #define MAXQSIZE 100 // 最大队列长度
+    typedef struct{
+        QElemType *base;    // 初始化的动态分配存储空间
+        int front;  // 头指针，即队头下标
+        int rear;   // 尾指针
+    }SqQueue;
+```
+
+> 顺序队列存在的问题
+
+顺序队列的真溢出问题：即front=0，rear=MAXQSIZE时，队列中存满，为真溢出；
+
+而当入队、出队操作之后，随着front和rear移动，出现front!=0，rear=MAXQSIZE时，为假溢出。
+
+> 顺序队列假上溢解决办法
+
+- 解决假上溢的方法
+
+    1. 将队中元素依次向队头方向移动。缺点：浪费时间。每移动一次，队中元素都要移动。
+
+    2. 将队空间设想成一个循环的表，即分配给队列的m个存储单元可以循环使用，当rear为maxqsize时，若向量的开始端空着，又可从头使用空着的空间。当front为maxqsize时，也是一样。
+
+- 引入循环队列——解决假上溢的问题
+
+    `base[0]`接在`base[MAXQSIZE-1]`之后，若rear+1==M，则rear=0；
+
+    实现方法：利用模运算(mod, %)
+
+    插入元素：(尾指针后移一位)
+
+    ```C++
+        Q.base[Q.rear] = x;
+        Q.rear = (Q.rear+1) % MAXQSIZE;
+    ```
+
+    删除元素：(头指针后移一位)
+
+    ```C++
+        x = Q.base[Q.front];
+        Q.front = (Q.front + 1) % MAXQSIZE;
+    ```
+
+    针对循环队列，判断队空、对满时，front都与rear相等，因此可解决的方案有：
+
+    1. 另外设一个标态以区别队空和队满
+
+    2. 另设一个变量，记录元素个数
+
+    3. 少用一个能素空间
+
+- 循环队列解决队满时判断方法——少用一个元素空间
+
+    队空时：front == rear
+
+    队满时：(rear+1)% MAXQSIZE == front;
+
+> 循环队列的类型定义
+
+```C++
+    #define MAXQSIZE 100 // 最大队列长度
+    typedef struct{
+        QElemType *base;    // 初始化的动态分配存储空间
+        int front;  // 头指针，若队列不为空，指向队列头元素
+        int rear;   // 尾指针，若队列不为空，指向队尾元素的下一个位置
+    }SqQueue;
+```
+
+> 循环队列的操作——队列的初始化(算法3.11)
+
+```C++
+    Status InitQueue(SqQueue &Q){
+        Q.base = new QElemType[MAXQSIZE];
+        if(!Q.base) exit(OVERFLOW); // 存储分配失败
+        Q.front = Q.rear = 0;
+        return OK;
+    }
+```
+
+> 循环队列的操作——求队列的长度(算法3.12)
+
+```C++
+    int QueueLength(SqQueue Q){
+        return (Q.rear - Q.front + MAXQSIZE) % MAXQSIZE;
+    }
+```
+
+> 循环队列的操作——循环队列入队(算法3.13)
+
+```C++
+    Status EnQueue(SqQueue &Q, QElemType e){
+        if((Q.rear + 1) % MAXQSIZE == Q.front) return ERROR; // 队满
+        Q.base[Q.rear] = e; // 新元素加入队尾
+        Q.rear = (Q.rear + 1) % MAXQSIZE;   // 队尾指针+1
+        return OK;
+    }
+```
+
+> 循环队列的操作——循环队列出队(算法3.14)
+
+```C++
+    Status DeQueue(SqQueue &Q, QElemType &e){
+        if(Q.rear == Q.front) return ERROR; // 队空
+        e = Q.base[Q.front];    // 保存队头元素
+        Q.front = (Q.front + 1) % MAXQSIZE; // 队头指针+1
+        return OK;
+    }
+```
+
+> 循环队列的操作——取循环队列队头元素(算法3.15)
+
+```C++
+    QElemType GetHead(SqQueue Q){
+        if(Q.rear != Q.front){ // 不为空
+            return Q.base[Q.front]; // 返回队头指针元素的值，队头指针不变
+        }
+    }
+```
+
+### 3.5.3 链队——队列的链式表示和实现
+
+若用户无法估计所用队列的长度，则宜采用链队列。
+
+> 链式队列的类型定义
+
+```C++
+    #define MAXQSIZE 100 // 最大队列长度
+    struct Qnode{
+        QElemType data;
+        Qnode *next;
+    };
+    typedef Qnode *QueuePtr;
+
+    struct LinkQueue{
+        QueuePtr front; // 队头指针
+        QueuePtr rear;  // 队尾指针
+    };
+```
+
+> 链队列的操作——链队列的初始化(算法3.16)
+
+```C++
+    Status InitQueue(LinkQueue &Q){
+        Q.front = new QueuePtr();
+        Q.rear = new QueuePtr();
+        Q.front->next = NULL;
+        return OK;
+    }
+```
+
+> 链队列的操作——销毁链队列(补充)
+
+```C++
+    Status DestoryQueue(LinkQueue &Q){
+        while(Q.front){
+            p = Q.front->next;
+            delete (Q.front);
+            Q.front = p;
+        }
+        return OK;
+    }
+```
+
+> 链队列的操作——将元素e入队(算法3.17)
+
+```C++
+    Status EnQueue(LinkQueue &Q, QElemType e){
+        p = new QueuePtr;
+        if(!p) exit(OVERFLOW);  // 存储分配失败
+        p->data = e;
+        p->next = NULL;
+        Q.rear->next = p;
+        Q.rear = p;
+        return OK;
+    }
+```
+
+> 链队列的操作——链队列的出队(算法3.18)
+
+```C++
+    Status DeQueue(LinkQueue &Q, QElemType &e){
+        if(Q.front == Q.rear) return ERROR; // 队空
+        p = Q.front->next;
+        e = p->data;
+        Q.front->next = p->next;
+        if(Q.rear == p) Q.rear = Q.front;
+        delete p;
+        return OK;
+    }
+```
+
+> 链队列的操作——求链队列的队头元素(算法3.19)
+
+```C++
+    Status GetHead(LinkQueue &Q, QElemType &e){
+        if(Q.front == Q.rear) return ERROR;
+        e = Q.front->next->data;
+        return OK;
+    }
+```
