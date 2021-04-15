@@ -630,6 +630,66 @@
         };
     ```
 
-    [算法设计题1]()
+    ![双栈结构的表示](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter3%20StackAndQueue/Chapter3Exe/%E5%8F%8C%E6%A0%88%E7%BB%93%E6%9E%84%E7%9A%84%E8%A1%A8%E7%A4%BA.png)
+
+    [算法设计题1](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter3%20StackAndQueue/Chapter3Exe/AlgoDesignExe1.cpp)
 
 2. 回文是指正读反读均相同的字符序列，如“abba”和“abdba”均是回文，但“good”不是回文。试写一个算法判定给定的字符序列是否为回文。（提示：将一半字符入栈）
+
+    [算法设计题2](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter3%20StackAndQueue/Chapter3Exe/AlgoDesignExe2.cpp)
+
+3. 设从键盘输入一整数的序列：a1, a2, a3,..., an，试编写算法实现：用栈结构存储输入的整数，当ai≠-1时，将ai进栈；当ai = -1时，输出栈顶整数并出栈。算法应对异常情况(入栈满等)给出相应的信息。
+
+    [算法设计题3](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter3%20StackAndQueue/Chapter3Exe/AlgoDesignExe3.cpp)
+
+4. 从键盘上输入一个后缀表达式，试编写算法计算表达式的值。规定：逆波兰表达式的长度不超过一行，以"$"作为输入结束，操作数之间用空格分隔，操作符只可能有+、-、*、／四种运算。例如： 23434 + 2*$。
+
+5. 假设以I和O分别表示入栈和出栈操作。栈的初态和终态均为空，入栈和出栈的操作序列可表示为仅由I和O组成的序列，称可以操作的序列为合法序列，否则称为非法序列。
+
+    - 下面所示的序列中哪些是合法的？
+
+    A. IOIIOIOO B. IOOIOIIO C. IIIOIOIO D. IIIOOIOO
+
+    - 通过对上述的分析，写出一个算法，判定所给的操作序列是否合法。若合法，返回true，否则返回false(假定被判定的操作序列已存入一维数组中)。
+
+    [算法设计题5](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter3%20StackAndQueue/Chapter3Exe/AlgoDesignExe5.cpp)
+
+6. 假设以带头结点的循环链表表示队列，并且只设一个指针指向队尾元素结点（注意：不设头指针），试编写相应的置空队列、判断队列是否为空、入队和出队等算法。
+
+    [算法设计题6](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter3%20StackAndQueue/Chapter3Exe/AlgoDesignExe6.cpp)
+
+7. 假设以数组`Q[m]`存放循环队列中的元素，同时设置一个标志tag，以tag = 0和tag = 1来区别在队头指针(front)和队尾指针(rear)相等时，队列状态为“空”还是“满”。试编写与此结构相应的插入(enqueue)和删除(dequeue)算法。
+
+    [算法设计题7](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter3%20StackAndQueue/Chapter3Exe/AlgoDesignExe7.cpp)
+
+8. 如果允许在循环队列的两端都可以进行插入和删除操作。要求：
+
+    - 写出循环队列的类型定义；
+
+    - 写出“从队尾删除”和“从队头插入”的算法。
+
+    [算法设计题8](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter3%20StackAndQueue/Chapter3Exe/AlgoDesignExe8.cpp)
+
+9. 已知Ackermann函数定义如下：Ack(m, n) =
+
+    - n + 1, 当m = 0时
+
+    - Ack(m-1, 1), 当m≠0, n=0时
+
+    - Ack(m-1, Ack(m, n-1)), 当m≠0, n≠0时
+
+    1. 写出计算Ack(m, n)的递归算法，并根据此算法给出Ack(2, 1)的计算过程。
+
+    2. 写出计算Ack(m,n)的非递归算法。
+
+    [算法设计题9](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter3%20StackAndQueue/Chapter3Exe/AlgoDesignExe9.cpp)
+
+10. 已知f为单链表的表头指针，链表中存储的都是整型数据，试写出实现下列运算的递归算法：
+
+    1. 求链表中的最大整数；
+
+    2. 求链表的结点个数；
+
+    3. 求所有整数的平均值。
+
+    [算法设计题10](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter3%20StackAndQueue/Chapter3Exe/AlgoDesignExe10.cpp)
