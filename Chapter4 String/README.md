@@ -94,4 +94,108 @@
         };  // 字符串的块链结构
     ```
 
-## 4.3.3 串的模式匹配算法
+### 4.3.3 串的模式匹配算法
+
+子串的定位运算通常称为串的**模式匹配**或**串匹配**。即算法目的：确定主串中所含子串（模式串）第一次出现得位置。
+
+串的模式匹配设有两个字符串S和T，设S为主串，也称正文串；设T为子串，也称为模式。在主串S中查找与模式T相匹配的子串，如果匹配成功，确定相匹配的子串中的第一个字符在主串S中出现的位置。
+
+算法种类包括有：BF算法、KMP算法。
+
+1. BF算法
+
+    Brute-Force简称BF算法，亦称简单匹配算法，采用穷举法的思路：从S的每一个字符开始依次与T的字符进行匹配。
+
+    > 算法设计思想
+
+    Index(S, T, pos)
+
+    1. 将主串的第pos个字符和模式串的第一个字符比较，
+
+        - 若相等，继续逐个比较后续字符；
+
+        - 若不等，从主串的下一字符起，重新与模式串的第一个字符比较。
+
+    2. 直到主串的一个连续子串字符序列与模式串相等。返回值为S中与T匹配的子序列第一个字符的序号，即匹配成功。
+
+    3. 否则，匹配失败，返回值0
+
+    > 算法4.1——BF算法描述
+
+    ```C++
+        int Index_BF(SString S, SString T){
+            int i = 1, j = 1;
+            while(i <= S.lenght && j <= T.length){
+                if(S.ch[i] == T.ch[j]){
+                    ++i;
+                    ++j;
+                }else{
+                    // 主串、子串指针回溯重新开始下一次匹配
+                    i = i - j + 2;
+                    j = 1;
+                }
+            }
+            if(j >= T.lenght) return i - T.lenght;
+            else return 0;
+        }
+    ```
+
+    当m远小于n时，算法复杂度为O(n*m)，平均复杂度为O(nm/2)。
+
+2. KMP算法
+
+    KMP算法，利用已经部分匹配的结果而加快模式串的滑动速度，且主串S的指针i**不必回溯**！可提速到O(n+m)
+
+    重点在于定义`next[j]`函数，表明当模式中第j个字符与主串中相应字符失配时，在模式中需要重新和主串中该字符进行比较的字符的位置。
+
+    ![next_j]()
+
+    > KMP算法
+
+    ```C++
+        int Index_KMP(SString S, SString T, int pos){
+            int i = pos, j = 1;
+            while(i < S.length && j < T.length){
+                if(j == 0 || S.ch[i] == T.ch[j]){
+                    i++;
+                    j++;
+                }else{
+                    j = next[j];    // i不变，j后退
+                }
+            }
+            if(j > T.length) return i - T.length;   // 匹配成功
+            else return 0;
+        }
+
+        void get_next(SString T, int& next[]){
+            int i = 1, next[1] = 0, j = 0;
+            while(i < T.lenght){
+                if(j == 0 || T.ch[i] == T.ch[j]){
+                    ++i;
+                    next[i] = j;
+                }else{
+                    j = next[j];
+                }
+            }
+        }
+    ```
+
+    对next进行修正，改进：
+
+    ```C++
+        void get_nextval(SString T, int& nextval[]){
+        int i = 1, nextval[1] = 0, j = 0;
+        while(i < T.lenght){
+            if(j == 0 || T.ch[i] == T.ch[j]){
+                ++i;
+                ++j;
+                if(T.ch[i] != T.ch[j]) nextval[i] = j;
+                else nextval[i] = nextval[j];
+            }else{
+                j = nextval[j];
+            }
+        }
+    }
+    ```
+
+## 4.4 数组
