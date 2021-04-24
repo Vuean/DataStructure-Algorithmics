@@ -399,12 +399,28 @@ aj1j2：第1维下标为j1，第2维下标为j2
 
 1. 写一个算法统计在输入字符串中各个不同字符出现的频度并将结果存入文件（字符串中的合法字符为A~Z这26个字母和0~9这10个数字）。
 
-    [算法设计题1]()
+    [算法设计题1](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter4%20String/Chapter4Exe/AlgoDesignExe1.cpp)
 
 2. 写一个递归算法来实现字符串逆序存储，要求不另设串存储空间。
 
-    [算法设计题2]()
+    [算法设计题2](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter4%20String/Chapter4Exe/AlgoDesignExe2.cpp)
 
 3. 编写算法，实现下面函数的功能。函数`void insert(char*s, char* t, int pos)`将字符串t插入到字符串s中，插入位置为pos。假设分配给字符串s的空间足够让字符串t插入。（说明：不得使用任何库函数）
 
-    [算法设计题3]()
+    [算法设计题3](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter4%20String/Chapter4Exe/AlgoDesignExe3.cpp)
+
+4. 已知字符串S1中存放一段英文，写出算法format(s1, s2, s3, n)，将其按给定的长度n格式化成两端对齐的字符串S2，其多余的字符送S3。
+
+    [算法设计题4](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter4%20String/Chapter4Exe/AlgoDesignExe4.cpp)
+
+5. 设二维数组a[1...m, l...n]含有m x n个整数。
+
+    1. 写一个算法判断a中所有元素是否互不相同？输出相关信息(yes/no);
+
+    2. 试分析算法的时间复杂度。
+
+    [算法设计题5](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter4%20String/Chapter4Exe/AlgoDesignExe5.cpp)
+
+6. 设任意n个整数存放于数组A[1..n]中，试编写算法，将所有正数排在所有负数前面(要求：算法时间复杂度为O(n))。
+
+    [算法设计题6](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter4%20String/Chapter4Exe/AlgoDesignExe6.cpp)
