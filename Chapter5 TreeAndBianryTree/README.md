@@ -87,13 +87,38 @@
 
     二叉树有五种形态；树有两种形态：
 
-![二叉树]()
+![二叉树](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter5%20TreeAndBianryTree/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%BA%94%E7%A7%8D%E5%BD%A2%E6%80%81.png)
 
-![树]()
+![树](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter5%20TreeAndBianryTree/%E6%A0%91%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BD%A2%E6%80%81.png)
 
 > 二叉树的5种基本形态
 
 二叉树的5种基本形态包括有：空二叉树、根和空的左右子树、根和左子树、根和右子树、根和左右子树。
 
-![二叉树的5种基本形态]()
+![二叉树的5种基本形态](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter5%20TreeAndBianryTree/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%BA%94%E7%A7%8D%E5%9F%BA%E6%9C%AC%E5%BD%A2%E6%80%81.png)
 
+## 5.2 案例引入
+
+> 案例5.1：数据压缩的问题
+
+将数据文件转换成由0、1组成的二进制串，称之为编码。
+
+等长编码方案、不等长编码方案1、不等长编码方案2
+
+> 案例5.2：利用二叉树求解表达式的值
+
+一般情况下，一个表达式由一个运算符和两个操作数构成，两个操作数之间有次序之分，并且操作数本身也可以是表达式，这个结构类似于二叉树，因此可以利用二叉树来表示表达式。
+
+## 5.3 树和二叉树的抽象数据类型定义
+
+根据树的结构定义，加上树的一组基本操作就构成了树的抽象数据类型定义。
+
+    ADT BinaryTree{
+        // 数据对象D：
+        // 数据关系R：
+        // 基本操作P：
+    }ADT BinaryTree;
+
+## 5.4 二叉树的性质和存储结构
+
+### 5.4.1 二叉树的性质
