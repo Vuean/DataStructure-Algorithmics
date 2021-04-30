@@ -220,7 +220,7 @@
 
 1. 三种遍历方法描述如下：
 
-    ![遍历方法描述]()
+    ![遍历方法描述](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter5%20TreeAndBianryTree/%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95%E5%8C%BA%E5%88%AB.png)
 
     1. 先序遍历
 
@@ -261,3 +261,138 @@
     例题：已知二叉树的先序和中序序列，构造出相应的二叉树：**可以先由先序序列确定根，由中序确定左右子树**。
 
     已知中序序列和后序序列，**由后序遍历可知，根结点必在后续序列尾部**。
+
+3. 遍历的算法实现——先序遍历
+
+    二叉树先续遍历算法（递归）
+
+        ```C++
+            status PreOrderTraverse(BiTree T){
+                if(T == NULL) return OK;    // 空二叉树
+                else{
+                    visit(T);// 访问根结点
+                    PreOrderTraverse(T->lchild);    // 递归遍历左子树
+                    PreOrderTraverse(T->rchild); // 递归遍历右子树
+                }
+            }
+        ```
+
+4. 遍历算法实现——中序遍历
+
+    二叉树中序遍历算法（递归）
+
+        ```C++
+            status InOrderTraverse(BiTree T){
+                if(T == NULL) return OK;    // 空二叉树
+                else{
+                    InOrderTraverse(T->lchild);    // 递归遍历左子树
+                    visit(T);// 访问根结点
+                    InOrderTraverse(T->rchild); // 递归遍历右子树
+                }
+            }
+        ```
+5. 遍历算法实现——后序遍历
+
+    二叉树后序遍历算法（递归）
+
+        ```C++
+            status PostOrderTraverse(BiTree T){
+                if(T == NULL) return OK;    // 空二叉树
+                else{
+                    PostOrderTraverse(T->lchild);    // 递归遍历左子树
+                    PostOrderTraverse(T->rchild); // 递归遍历右子树
+                    visit(T);// 访问根结点
+                }
+            }
+        ```
+
+6. 遍历算法分析
+
+    - 如果去掉输出语句，从递归的角度看，三种算法是完全相同的，或说这三种算法的访问路径是相同的，只是访问结点的时机不同。
+
+    - 时间效率：O(n)；每个结点只访问一次
+
+    - 空间效率：O(n)；栈占用的最大辅助空间
+
+7. 遍历二叉树的非递归算法
+
+    中序遍历非递归算法：二叉树中序遍历的非递归算法的关键在于：**在中序遍历过某节点的整个左子树后，如何找到该接点的根以及右子树**。
+
+    基本思想：
+
+    - 建立一个空栈S，指针p指向根结点
+
+    - 申请一个结点空间q，用来存放栈顶弹出的元素。
+
+    - 当p非空或者栈S非空时，循环执行以下操作：
+
+        - 如果p非空，则将p进栈，p指向该结点的左孩子；
+
+        - 如果p为空，则弹出栈顶元素并访问，将p指向该结点的右孩子。
+
+    中序遍历非递归算法实现：
+
+        ```C++
+            Status InOrderTraverse(BiTree T){
+                BiTree p; InitStack(S); p = T;
+                while(p || !StackEmpty(S)){
+                    if(p){ // 不为空
+                        Push(S, p);
+                        p = p->lchild;
+                    }
+                    else{
+                        Pop(S, q);
+                        print("%c", q->data);
+                        p = q->rchild;
+                    }
+                }
+                return OK;
+            }
+        ```
+
+    无论是递归还是非递归遍历二叉树，因为每个结点被访问一次，则不论按哪一种次序进行遍历，对含n个结点的二叉树，其时间复杂度均为O(n)。所需辅助空间为遍历过程中栈的最大容量，即树的深度，最坏情况下为n，则空间复杂度也为O(n)。
+
+8. 二叉树的层次遍历
+
+    对于一颗二叉树，从根结点开始，按**从上到下、从左到右**的顺序访问每一个结点。每一个结点仅仅访问一次。
+
+    算法思路：
+
+    - 将根结点入队；
+
+    - 队不为空时循环：从队列中出列一个结点*p，访问它：
+
+        - 若它右左孩子结点，将左孩子结点入队；
+
+        - 若它有右孩子结点，将右孩子结点入队。
+
+    二叉树层次遍历算法实现：
+
+        ```C++
+            typedef struct{
+                BTNode data[MaxSize];   // 存放队中元素
+                int front, rear;        // 队头和队尾指针
+            }SqQueue;   // 顺序循环队列类型
+
+            void LevelOrder(BTNode *b){
+                BTNode* p;
+                SqQueue* qu;
+                InitQueue(sqQueue); // 初始化队列
+                enQueue(qu, b);     // 根结点指针入队
+                while(!QueueEmpty(qu)){
+                    // 队不为空，则循环
+                    deQueue(qu, p); // 出队结点p
+                    cout << p->data;
+                    if(p->lchild != NULL){
+                        // 有左孩子时将其入队
+                        enQueue(qu, p->lchild);
+                    }
+                    if(p->rchild != NULL){
+                        // 有右孩子时将其入队
+                        enQueue(qi, p->rchild);
+                    }
+                }
+            }
+        ```
+
+9. 二叉树遍历算法的应用——二叉树的建立(算法5.3)
