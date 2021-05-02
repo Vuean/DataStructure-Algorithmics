@@ -396,3 +396,133 @@
         ```
 
 9. 二叉树遍历算法的应用——二叉树的建立(算法5.3)
+
+    按照先续遍历序列建立二叉树的二叉链表
+
+    算法步骤：
+
+    - 扫描字符序列，读入字符，建立二叉树的存储结构；
+
+    - 如果ch是一个"#"字符，则表明该二叉树为空树，即T为NULL；否则执行以下操作：在建立二叉树的过程中按照二叉树先序方式建立：
+
+      - 申请一个结点空间T；
+
+      - 将ch赋给T->data；
+
+      - 递归创建T的左子树
+
+      - 递归创建T的右子树
+
+    算法实现：
+
+        ```C++
+            void CreateBiTree(BiTree& T){
+                // 按先序次序输入二叉树中结点的值（一个字符），创建二叉链表表示的二叉树T
+                cin >> ch;
+                if(ch == "#") T = NULL; // 递归结束，建空树
+                else{
+                    // 递归创建二叉树
+                    T = new BiTree; // 生成根结点
+                    T->data = ch;   // 根结点数据域置为ch
+                    CreateBiTree(T->lchild);// 递归创建左子树
+                    CreateBiTree(T->rchild);// 递归创建右子树
+                }
+            }
+        ```
+
+10. 二叉树遍历算法的应用——复制二叉树(算法5.4)
+
+    算法步骤：
+
+    如果是空树，递归结束，否则执行以下操作：
+
+    - 申请一个新结点空间， 复制根结点；
+
+    - 递归复制左子树；
+
+    - 递归复制右子树。
+
+    算法实现：
+
+        ```C++
+            void Copy(BiTree T, BiTree& NewT){
+                // 复制一棵和T完全相同的二叉树
+                if(T == NULL){
+                    // 如果是空树，递归结束
+                    newT = NULL;
+                    return;
+                }
+                else{
+                    newT = new BoTree;
+                    newT->data = T->data;// 复制根结点
+                    Copy(T->lchild, newT->lchild);// 递归复制左子树
+                    Copy(T->rchild, newT->rchild);// 递归复制左子树
+                }
+            }
+        ```
+
+11. 二叉树遍历算法的应用——计算二叉树的深度(算法5.5)
+
+    如果是空树，递归结束，深度为0，否则执行以下操作：
+
+    - 递归计算左子树的深度记为m；
+
+    - 递归计算右子树的深度记为n;
+
+    - 如果m大于n，二叉树的深度为m+1，否则为n+1。
+
+    算法实现：
+
+        ```C++
+            int Depth(BiTree T){
+                // 计算二叉树T的深度
+                if(T == NULL) return 0;
+                else{
+                    m = Depth(T->lchild);   // 递归计算左子树的深度记为m
+                    n = Depth(T->rchild);   // 递归计算右子树的深度记为n
+                    if(m > n) return(m+1);  // 二叉树深度为m与n的较大者加1
+                    else{
+                        return (n+1);
+                    }
+                }
+            }
+        ```
+
+    计算二叉树的深度是在后序遍历二叉树的基础上进行的运算。
+
+12. 二叉树遍历算法的应用——统计二叉树结点的个数(算法5.6)
+
+    如果是空树，则结点个数为0；否则，结点个数为左子树的结点个数加上右子树的结点个数再加上1。
+
+    算法实现：
+
+        ```C++
+            int NodeCount(BiTree T){
+                if(T == NULL) return 0;
+                else{
+                    return NodeCount(T->lchild) + NodeCount(T->rchild) + 1;
+                }
+            }
+        ```
+
+13. 二叉树遍历算法的应用——统计二叉树叶子结点的个数(补充算法)
+
+    如果是空树，则结点个数为0；否则，结点个数为左子树的叶子结点个数加上右子树的叶子结点个数再加上1。
+
+    算法实现：
+
+        ```C++
+            int LeafCount(BiTree T){
+                if(T == NULL) return 0;
+                if(T->lchild == NULL && T->rchild == NULL) 
+                {
+                    // 如果是叶子节点返回1
+                    return 1;
+                }
+                else{
+                    return LeafCount(T->lchild) + LeafCount(T->rchild);
+                }
+            }
+        ```
+
+### 5.5.2 线索二叉树
