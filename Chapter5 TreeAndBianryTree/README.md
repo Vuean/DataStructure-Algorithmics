@@ -549,11 +549,11 @@
 
     以下为先序线索二叉树、中序线索二叉树、后序线索二叉树示意图。
 
-    ![先序线索二叉树]()
+    ![先序线索二叉树](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter5%20TreeAndBianryTree/%E5%85%88%E5%BA%8F%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91.png)
 
     ![中序线索二叉树]()
 
-    ![后序线索二叉树]()
+    ![后序线索二叉树](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter5%20TreeAndBianryTree/%E5%90%8E%E5%BA%8F%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91.png)
 
     为了方便起见，仿照线性表的存储结构，在二叉树的线索链表上也添加一个头结点，并令其**lchild域的指针指向二叉树的根结点**，其**rchild域的指针指向遍历遍历时访问的最后一个结点**；同时，**令二叉树遍历序列中第一个结点的lchild域指针和最后一个结点rchild域的指针均指向头结点**。这好比为二叉树建立了一个双向线索链表，既可从第一个结点起顺后继进行遍历，也可从最后一个结点起顺前驱进行遍历。
 
@@ -577,6 +577,23 @@
 
     这种表示方法中，以一组连续的存储单元存储树的结点，每个结点除了数据域data外，还附设一个parent域用以指示其双亲结点的位置。
 
-    ![树的双亲表示法]()
+    ![树的双亲表示法](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter5%20TreeAndBianryTree/%E6%A0%91%E7%9A%84%E5%8F%8C%E4%BA%B2%E8%A1%A8%E7%A4%BA%E6%B3%95.png)
+
+    双亲表示法特点：找双亲结点容易，找孩子结点难。
+
+    类型描述：
+
+        ```C++
+            struct PTNode{
+                TElemType data;
+                int parent; // parent结点位置
+            };
+
+            #define MAX_TREE_SIZE 100
+            struct PTree{
+                PTNode nodes[MAX_TREE_SIZE];
+                int r, n;   // 根结点的位置和节点个数
+            };
+        ```
 
 2. 孩子表示法
