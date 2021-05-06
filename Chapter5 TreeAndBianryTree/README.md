@@ -597,3 +597,48 @@
         ```
 
 2. 孩子表示法
+
+    把每个结点的孩子结点排列起来，看成是一个线性表，用单链表存储，则n个结点有n个孩子链表（叶子的孩子链表为空表）。而n个头指针又组成一个线性表，用顺序表（含n个元素的结构数组）存储。
+
+    特点：找孩子容易，找双亲难。
+
+    类型描述：
+
+        ```C++
+            // 孩子结点结构
+            struct CTNode{
+                int child;
+                CTNode* next;
+            };
+            typedef CTNode *ChildPtr;
+            // 双亲结点结构
+            struct CTBox{
+                TElemType data;
+                ChildPtr firstChild;    // 孩子链表头指针
+            }
+            // 树结构
+            struct CTree{
+                CTBox nodes[MAX_TREE_SIZE];
+                int n, r;
+            };
+        ```
+
+    可以把双亲表示法和孩子表示法结合起来，即将双亲表示和孩子链表合在一起，称为带双亲的孩子链表。
+
+3. 孩子兄弟表示法(二叉树表示法、二叉链表表示法)
+
+    又称二叉树表示法，或二叉链表表示法，即以二叉链表做树的存储结构。链表中结点的两个链域分别指向该结点的**第一个孩子结点**和**下一个兄弟结点**，分别命名为firstchild域和nextsibling域。
+
+     类型描述：
+
+        ```C++
+            struct CSNode{
+                ElemType data;
+                CSNode *firstChild, *nextsibling;
+            };
+            typedef CSNode *CSTree;
+        ```
+
+    这种存储结构的优点是它和二叉树的二叉链表表示完全一样，便于将一般的树结构转换为二叉树进行处理，利用二叉树的算法来实现对树的操作。因此孩子兄弟表示法是应用较为普遍的一种树的存储表示方法。
+
+### 5.6.2 森林与二叉树的转换
