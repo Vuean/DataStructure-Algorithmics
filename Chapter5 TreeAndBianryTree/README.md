@@ -966,32 +966,32 @@
 
 1. 统计二叉树的叶结点个数。
 
-    [算法设计题1]()
+    [算法设计题1](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter5%20TreeAndBianryTree/Chapter5Exe/AlgoDesignExe1.cpp)
 
 2. 判别两棵树是否相等。
 
-    [算法设计题2]()
+    [算法设计题2](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter5%20TreeAndBianryTree/Chapter5Exe/AlgoDesignExe2.cpp)
 
 3. 交换二叉树每个结点的左孩子和右孩子。
 
-    [算法设计题3]()
+    [算法设计题3](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter5%20TreeAndBianryTree/Chapter5Exe/AlgoDesignExe3.cpp)
 
 4. 设计二叉树的双序遍历算法（双序遍历是指对于二叉树的每一个结点来说，先访问这个结点，再按双序遍历它的左子树，然后再一次访问这个结点，接下来按双序遍历它的右子树）。
 
-    [算法设计题4]()
+    [算法设计题4](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter5%20TreeAndBianryTree/Chapter5Exe/AlgoDesignExe4.cpp)
 
 5. 计算二叉树最大的宽度（二叉树的最大宽度是指二叉树所有层中结点个数的最大值）。
 
-    [算法设计题5]()
+    [算法设计题5](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter5%20TreeAndBianryTree/Chapter5Exe/AlgoDesignExe5.cpp)
 
 6. 用按层次顺序遍历二叉树的方法，统计树中度为1的结点数目。
 
-    [算法设计题6]()
+    [算法设计题6](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter5%20TreeAndBianryTree/Chapter5Exe/AlgoDesignExe6.cpp)
 
 7. 求任意二叉树中第一条最长的路径长度，并输出此路径上各结点的值。
 
-    [算法设计题7]()
+    [算法设计题7](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter5%20TreeAndBianryTree/Chapter5Exe/AlgoDesignExe7.cpp)
 
 8. 输出二叉树中从每个叶子结点到根结点的路径。
 
-    [算法设计题8]()
+    [算法设计题8](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter5%20TreeAndBianryTree/Chapter5Exe/AlgoDesignExe8.cpp)
