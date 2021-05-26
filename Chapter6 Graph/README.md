@@ -561,4 +561,86 @@ MST性质解释：
     ```
 
     算法6.8 普里姆算法
-    
+
+    1. 首先将初始顶点u加入U中，对其余的每一个顶点Vj，将closedge[j]均初始化为到u的边息。
+
+    2. 循环n - 1次，做如下处理：
+
+        - 从各组边closedge中选出最小边closedge[k]，输出此边；
+
+        - 将k加入U中；
+
+        - 更新剩余的每组最小边信息closedge[j]，对于V-U中的边，新增加了一条从k到j的边，如果新边的权值比closedge[i].lowcost小，则将closedge[j].lowcost 更新为新边的权值。
+
+    算法描述：
+
+    ```C++
+        void MiniSpanTree_Prim(AMGraph G, VerTexType u)
+        {
+            // 无向网G以邻接矩阵形式存储，从顶点u出发构造G的最小生成树T，输出T的各条边
+            k = LocateVex(G, u);        // k为顶点u的下标
+            for(j = 0; j < G.vexnum; ++j)
+            {
+                if(j != k) closedge[j] = {u, G.arcs[k][j]};
+                closedge[k].lowcost = 0;    // 初始，U={u}
+                for(int i = 1; i < G.vexnum; ++i)
+                {
+                    // 求出T的下一个结点：第k个顶点，closedge[k]中存有当前最小边
+                    u0 = closedge[k].adjvex;    // u0为最小边的一个顶点
+                    v0 = G.vexs[k];             // v0为最小边的另一个顶点
+                    cout << u0 << v0;
+                    closedge[k].lowcost = 0;
+                    for(j = 0; j < G.vexnum; ++j)
+                    {
+                        if(G.arcs[k][j] < closedge[j].lowcost)
+                        {
+                            closedge[j] = {G.vexs[k], G.arcs[k][j]};
+                        }
+                    }
+                }
+            }
+        }
+    ```
+
+2. 克鲁斯卡尔算法
+
+    算法步骤：
+
+    1. 将数组Edge中的元素按权值从小到大排序。
+
+    2. 依次查看数组Edge中的边，循环执行以下操作：
+
+        - 依次从排好序的数组Edge中选出一条边(U1,U2)；
+
+        - 在Vexset中分别查找V1和V2所在的连通分量vs1和vs2，进行判断：
+
+            - 如果vs1和vs2不等，表明所选的两个顶点分属不同的连通分量，输出此边，并合并vs1和vs2两个连通分量；
+
+            - 如果vs1和vs2相等，表明所选的两个顶点属于同一个连通分量，舍去此边而选择下一条权值最小的边。
+
+    算法描述：
+
+    ```C++
+        void MiniSpanTree_Kruskal(AMGraph G)
+        {
+            Sort(Edge); // 将数组Edge中的元素按权值从小到大排序
+            for(i = 0; i < G.arcnum; i++)
+            {
+                v1 = LocateVex(G, Edge[i].Head);    // v1为边的始点Head的下标
+                v2 = LocateVex(G, Edge[i].Tail);    // v2为边的始点Head的下标
+                vs1 = Vexset[v1];   // 获取边Edge[i]的始点所在的连通分量vs1
+                vs2 = Vexset[v2];   // 获取边Edge[i]的始点所在的连通分量vs2
+                if(vs1 != vs2)
+                {
+                    cout << Edge[i].Head << Edge[i].Tail;
+                    for(j = 0; j < G.vexnum; ++j)
+                    {
+                        if(Vexset[j] == vs2)
+                            Vexset[j] = vsl;
+                    }
+                }
+            }
+        }
+    ```
+
+### 6.6.2 最短路径
