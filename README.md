@@ -16,4 +16,4 @@
 
 [第七章 查找](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/README.md)
 
-[第八章 排序](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter8%20Search/README.md)
+[第八章 排序](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter8%20Sorting/README.md)
