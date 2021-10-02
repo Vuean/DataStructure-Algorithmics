@@ -32,7 +32,7 @@
 
     - 查找算法的评价指标“：关键字的平均比较次数，也称为**平均查找长度**，（ASL, Average Search Length）。
 
-    !(平均查找长度定义)[https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E5%B9%B3%E5%9D%87%E6%9F%A5%E6%89%BE%E9%95%BF%E5%BA%A6%E5%AE%9A%E4%B9%89.png]
+    ![平均查找长度定义](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E5%B9%B3%E5%9D%87%E6%9F%A5%E6%89%BE%E9%95%BF%E5%BA%A6%E5%AE%9A%E4%B9%89.png)
 
 查找的方法取决于查找表的结构，即表中数据元素是依何种关系组织在一起的。
 
@@ -166,7 +166,7 @@
 
 查找效率：ASL = LB + LW；即对索引表查找的ASL加上对块内查找的ASL
 
-![分块查找效率]()
+![分块查找效率](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E6%9F%A5%E6%89%BE%E6%95%88%E7%8E%87.png)
 
 优点：插入和删除较容易，无需进行大量移动
 
@@ -174,7 +174,7 @@
 
 适用情况：如果线性表既要**快速查找**又经常**动态变化**，则可采用分块查找。
 
-![查找方法比较]()
+![查找方法比较](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95%E6%AF%94%E8%BE%83.png)
 
 ## 7.3 树表的查找
 
