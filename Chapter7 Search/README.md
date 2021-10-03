@@ -308,7 +308,22 @@ BSTree SearchBST(BSTree T, KeyType key)
 
     如果在一个AVL树中插入一个新结点后造成失衡，则必须**重新调整树的结构**，使之回复平衡。
 
-平衡调整的四种类型：
+平衡调整的四种类型：LL型、LR型、RL型和RR型
 
+![平衡调整的四种类型示意图](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E5%B9%B3%E8%A1%A1%E8%B0%83%E6%95%B4%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%B1%BB%E5%9E%8B.png)
+
+![平衡调整的四种类型调整后示意图](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E5%B9%B3%E8%A1%A1%E8%B0%83%E6%95%B4%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%B1%BB%E5%9E%8B_%E8%B0%83%E6%95%B4%E5%90%8E.png)
+
+平衡调整的原则：1）降低高度；2）保持二叉排序树性质
+
+1. LL型调整
+
+    - B结点带左子树一起上升
+
+    - A结点成为B的右孩子
+
+    - 原来B结点的右子树作为A的左子树
+
+2. LR型调整
 
 ## 7.4 哈希表的查找（散列表的查找）
