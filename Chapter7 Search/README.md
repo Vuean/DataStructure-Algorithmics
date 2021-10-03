@@ -330,6 +330,14 @@ BSTree SearchBST(BSTree T, KeyType key)
 
 2. RR型调整
 
-    ![图8：RR型调整前-后对比示意图]()
+    ![图8：RR型调整前-后对比示意图](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E5%9B%BE8%EF%BC%9ARR%E5%9E%8B%E8%B0%83%E6%95%B4%E5%89%8D-%E5%90%8E%E5%AF%B9%E6%AF%94%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
+
+    - B结点带右节点一起上升
+
+    - A结点成为B结点的左孩子
+
+    - 原来B结点的左子树作为A的右子树
+
+    ![图9：RR型调整示例]()
 
 ## 7.4 哈希表的查找（散列表的查找）
