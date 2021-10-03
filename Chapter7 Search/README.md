@@ -32,7 +32,7 @@
 
     - 查找算法的评价指标“：关键字的平均比较次数，也称为**平均查找长度**，（ASL, Average Search Length）。
 
-    ![平均查找长度定义](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E5%B9%B3%E5%9D%87%E6%9F%A5%E6%89%BE%E9%95%BF%E5%BA%A6%E5%AE%9A%E4%B9%89.png)
+    ![图1：平均查找长度定义](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E5%B9%B3%E5%9D%87%E6%9F%A5%E6%89%BE%E9%95%BF%E5%BA%A6%E5%AE%9A%E4%B9%89.png)
 
 查找的方法取决于查找表的结构，即表中数据元素是依何种关系组织在一起的。
 
@@ -166,7 +166,7 @@
 
 查找效率：ASL = LB + LW；即对索引表查找的ASL加上对块内查找的ASL
 
-![分块查找效率](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E6%9F%A5%E6%89%BE%E6%95%88%E7%8E%87.png)
+![图2：分块查找效率](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E6%9F%A5%E6%89%BE%E6%95%88%E7%8E%87.png)
 
 优点：插入和删除较容易，无需进行大量移动
 
@@ -174,7 +174,7 @@
 
 适用情况：如果线性表既要**快速查找**又经常**动态变化**，则可采用分块查找。
 
-![查找方法比较](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95%E6%AF%94%E8%BE%83.png)
+![图3：查找方法比较](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95%E6%AF%94%E8%BE%83.png)
 
 ## 7.3 树表的查找
 
@@ -310,19 +310,23 @@ BSTree SearchBST(BSTree T, KeyType key)
 
 平衡调整的四种类型：LL型、LR型、RL型和RR型
 
-![平衡调整的四种类型示意图](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E5%B9%B3%E8%A1%A1%E8%B0%83%E6%95%B4%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%B1%BB%E5%9E%8B.png)
+![图4：平衡调整的四种类型示意图](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E5%B9%B3%E8%A1%A1%E8%B0%83%E6%95%B4%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%B1%BB%E5%9E%8B.png)
 
-![平衡调整的四种类型调整后示意图](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E5%B9%B3%E8%A1%A1%E8%B0%83%E6%95%B4%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%B1%BB%E5%9E%8B_%E8%B0%83%E6%95%B4%E5%90%8E.png)
+![图5：平衡调整的四种类型调整后示意图](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E5%B9%B3%E8%A1%A1%E8%B0%83%E6%95%B4%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%B1%BB%E5%9E%8B_%E8%B0%83%E6%95%B4%E5%90%8E.png)
 
 平衡调整的原则：1）降低高度；2）保持二叉排序树性质
 
 1. LL型调整
+
+    ![图6：LL型调整前-后对比示意图](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/LL%E5%9E%8B%E8%B0%83%E6%95%B4%E5%89%8D-%E5%90%8E%E5%AF%B9%E6%AF%94.png)
 
     - B结点带左子树一起上升
 
     - A结点成为B的右孩子
 
     - 原来B结点的右子树作为A的左子树
+
+    ![图7：LL型调整示例]()
 
 2. LR型调整
 
