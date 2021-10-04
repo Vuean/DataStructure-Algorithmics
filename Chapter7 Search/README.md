@@ -338,6 +338,24 @@ BSTree SearchBST(BSTree T, KeyType key)
 
     - 原来B结点的左子树作为A的右子树
 
-    ![图9：RR型调整示例]()
+    ![图9：RR型调整示例](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter7%20Search/%E5%9B%BE9%EF%BC%9ARR%E5%9E%8B%E8%B0%83%E6%95%B4%E7%A4%BA%E4%BE%8B.png)
+
+3. LR型调整
+
+    ![图10：LR型调整前-后对比示意图]()
+
+    - C结点穿过A、B结点上升
+
+    - B结点成为C的左孩子，A结点成为C的右孩子
+
+    - 原来C结点的左子树作为B的右子树，原来C结点的右子树作为A的左子树
+
+    ![图11：LR型调整示例]()
+
+4. RL型调整
+
+    ![图12：RL型调整前示意图]()
+
+    ![图13：RL型调整示例]()
 
 ## 7.4 哈希表的查找（散列表的查找）
