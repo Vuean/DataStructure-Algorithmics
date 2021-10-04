@@ -461,6 +461,8 @@
 
 ## 8.8 排序方法比较
 
+![图03：排序方法比较](https://github.com/Vuean/DataStructure-Algorithmics/blob/main/Chapter8%20Sorting/%E5%9B%BE03%EF%BC%9A%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95%E6%AF%94%E8%BE%83.png,'排序方法比较')
+
 1. 时间性能
 
     1. 按平均的时间性能来分，有三类排序方法：
